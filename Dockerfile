@@ -10,8 +10,6 @@ RUN apt-get update && apt-get upgrade -y && \
     echo 'python3 -m http.server 8000' >> /start.sh && \
     chmod +x /start.sh
 
-RUN tail -f /dev/null
-
 FROM alpine as build
 
 WORKDIR /

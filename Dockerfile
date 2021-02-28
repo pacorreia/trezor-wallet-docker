@@ -1,13 +1,13 @@
 FROM debian:stable-slim as base
 
-EXPOSE 8000
+ENV HTTP_SERVER_PORT=8000
 
 WORKDIR /mytrezor
 
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y python3 && \
     echo '#!/bin/bash' > /start.sh && \
-    echo 'python3 -m http.server 8000' >> /start.sh && \
+    echo 'python3 -m http.server $HTTP_SERVER_PORT' >> /start.sh && \
     chmod +x /start.sh
 
 FROM alpine as build

@@ -40,8 +40,7 @@ jobs:
         run: |
           docker container prune --force
           docker run -d -p 9999:9999 -e HTTP_SERVER_PORT=9999 trezor-wallet
-      - name: Run true test
-        run: |
+
           result=$(curl -sL  -w "%{http_code}\\n" 'http://localhost:9999/manifest.json'   \
           -H 'Referer: http://localhost:9999/'   \
           -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36 Edg/88.0.705.74' \
@@ -52,6 +51,7 @@ jobs:
             echo "HTTP code: $result";
             exit 1;
           fi
+
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/

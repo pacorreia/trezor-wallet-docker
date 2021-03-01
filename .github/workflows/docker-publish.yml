@@ -48,8 +48,8 @@ jobs:
           --compressed -o /dev/null)
           
           if [ $result -ne 200 ]; then
-            echo "HTTP code: $result";
-            exit 1;
+            echo 'HTTP code: '$result
+            echo "::error::Test failed"
           fi
 
 

@@ -49,8 +49,8 @@ jobs:
           --compressed -o /dev/null)
           
           if [ $result -ne 200 ]; then
-            echo "HTTP code: $result"
-            exit(1)
+            echo "HTTP code: $result";
+            exit 1;
           fi
       - name: Run false test
         run: |
@@ -61,8 +61,8 @@ jobs:
           --compressed -o /dev/null)
 
           if [ $result -eq 200 ]; then
-            echo "HTTP code $result"
-            exit(1)
+            echo "HTTP code $result";
+            exit 1;
           fi
 
   # Push image to GitHub Packages.

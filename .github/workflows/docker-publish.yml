@@ -52,18 +52,6 @@ jobs:
             echo "HTTP code: $result";
             exit 1;
           fi
-      - name: Run false test
-        run: |
-          result=$(curl -sL  -w "%{http_code}\\n" 'http://localhost:8000/manifest.json'   \
-          -H 'Referer: http://localhost:8000/'   \
-          -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36 Edg/88.0.705.74' \
-          -H 'DNT: 1' \
-          --compressed -o /dev/null)
-
-          if [ $result -eq 200 ]; then
-            echo "HTTP code $result";
-            exit 1;
-          fi
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/

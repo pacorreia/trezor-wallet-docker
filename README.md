@@ -2,7 +2,7 @@
 
 This image allows anyone who owns a Trezor Hardwalere wallet, to run their own wallet locally.
 
-This work is based on instrunctions available [here](https://wiki.trezor.io/User_manual:Running_a_local_instance_of_Trezor_Wallet).
+This work is based on instructions available [here](https://wiki.trezor.io/User_manual:Running_a_local_instance_of_Trezor_Wallet).
 
 Only the wallet is run locally. All the other links navigation bar will go to Trezor servers.
 

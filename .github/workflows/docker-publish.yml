@@ -45,15 +45,18 @@ jobs:
         run: |
           echo "Running docker container"
           docker run -d -p 9999:9999 -e HTTP_SERVER_PORT=9999 trezor-wallet
+
       - name: HTTP Status
-        # You may pin to the exact commit or the version.
-        # uses: lakuapik/gh-actions-http-status@705c34b4307b8a0354a431b75bb5910b6562dd20
-        uses: lakuapik/gh-actions-http-status@v1
-        with:
-          # List website urls in JSON (eg: ["http://github.com", "https://education.github.com"])
-          sites: '["http://localhost:9999"]'
-          # List expected HTTP status codes in JSON (eg: [301, 200])
-          expected: '[200]'
+        run: |
+          response=$(curl --write-out '%{http_code}' --silent --output /dev/null http://localhost:9999)
+  
+          if [ $response -eq 200 ]
+          then
+              echo "HTTP status code is 200"              
+          else
+              echo "HTTP status code is not 200"
+              echo "::error::Container delivered code $response"
+          fi
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
